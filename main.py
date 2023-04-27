@@ -1,3 +1,4 @@
+import base64
 import os
 import sqlite3
 
@@ -41,7 +42,11 @@ def main():
         for db_file in db_files:
             clipboard_data.append(grab_clipboard_content(db_file))
 
-        print(clipboard_data)
+        # decoding the content
+        for data in clipboard_data:
+            if data:
+                decoded_value = base64.b64decode(data)
+                print(decoded_value)
 
 
 main()
